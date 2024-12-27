@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             CatgeorySeeder::class,
+            PostSeeder::class,
         ]);
     }
 }
