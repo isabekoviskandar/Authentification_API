@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return response()->json($posts);
+        return PostResource::collection($posts);
     }
 
     public function show($id)
@@ -20,7 +21,7 @@ class PostController extends Controller
         if(!$post){
             return response()->json(['message' => 'Sorry we cannot find post'], 404);
         }else{
-            return response()->json($post);
+            return new PostResource($post);
         }
     }
 

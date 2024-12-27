@@ -17,7 +17,7 @@ class Post extends Model
         'description',
     ];
 
-    public function catgeory()
+    public function category()
     {
         return $this->belongsTo(Catgeory::class);
     }

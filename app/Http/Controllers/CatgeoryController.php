@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CategoryResurce;
 use App\Models\Catgeory;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,8 @@ class CatgeoryController extends Controller
     public function index()
     {
         $categories = Catgeory::all();
-        return response()->json($categories);
+        return CategoryResurce::collection($categories);
+
     }
 
     public function show($id)
@@ -19,7 +21,7 @@ class CatgeoryController extends Controller
         if(!$category){
             return response()->json(['message' => 'Categroy not found'] , 404);
         }else{
-            return response()->json($category);
+            return new CategoryResurce($category);
         }
     }
 
